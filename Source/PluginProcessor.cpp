@@ -72,8 +72,8 @@ void MBKDenoiserAudioProcessor::prepareToPlay (double sampleRate, int)
     for (auto& c : channels)
         c.reset (learnGeneration.load());
 
-    smMix.reset (sampleRate, 0.05);  smMix.setCurrentAndSetTargetValue (pMix->load() * 0.01f);
-    smOut.reset (sampleRate, 0.05);  smOut.setCurrentAndSetTargetValue (juce::Decibels::decibelsToGain (pOutput->load()));
+    smMix.reset (sampleRate, 0.05);  smMix.setCurrentAndTargetValue (pMix->load() * 0.01f);
+    smOut.reset (sampleRate, 0.05);  smOut.setCurrentAndTargetValue (juce::Decibels::decibelsToGain (pOutput->load()));
 
     learning.store (false);
     learnProgress.store (0.0f);
